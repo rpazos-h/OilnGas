@@ -17,4 +17,5 @@ barplot_bygroup <- function (df, by_var, var, stat_fun = mean, order_by_stat = F
     plot <- ggplot2::ggplot(df, ggplot2::aes_string(x = by_var, 
         y = stat_var)) + ggplot2::coord_flip() + ggplot2::geom_col(fill = color)
     list(df = df, plot = plot)
-}
+    
+    }
