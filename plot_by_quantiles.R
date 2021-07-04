@@ -1,4 +1,4 @@
-function (df, ts_id, quantiles = c(0.05, 0.25, 0.5, 0.75, 0.95), 
+plot_by_quantiles <- function (df, ts_id, quantiles = c(0.05, 0.25, 0.5, 0.75, 0.95), 
     var = utils::tail(colnames(df[sapply(df, is.numeric) & colnames(df) != 
         ts_id]), n = 1), points = TRUE) 
 {
