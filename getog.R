@@ -13,7 +13,7 @@
 #'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/c4a4a6a0-e75a-4e12-ae5c-54d53a70348c/download/produccin-de-pozos-de-gas-y-petrleo-2020.csv',
 #'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/465be754-a372-4c31-b855-81dc5fe3309f/download/produccin-de-pozos-de-gas-y-petrleo-2021.csv'))
 
-getOGdata <- function(years=c(2006:2008),
+getOGdata <- function(years=c(2006:2012),
                     #ind=TRUE,
                     dir=NULL,
                     asDataTable=TRUE,
@@ -21,10 +21,14 @@ getOGdata <- function(years=c(2006:2008),
   if (!is.loaded("data.table")) library(data.table)
   if (!is.loaded("foreign")) library(foreign)
   
-  ogDisponibles <- data.table(year=c(2006:2008),
+  ogDisponibles <- data.table(year=c(2006:2012),
                                 linkDescarga=c('http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/4e1c55e5-1f1b-4fc8-aa37-2080d9795f29/download/produccin-de-pozos-de-gas-y-petrleo-2006.csv',
                                                'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/be663a63-f020-4e28-8f31-c5f81d47554d/download/produccin-de-pozos-de-gas-y-petrleo-2007.csv',
-                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/3430b5a8-a516-42ca-a47d-2e1ce45925fb/download/produccin-de-pozos-de-gas-y-petrleo-2008.csv'))
+                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/3430b5a8-a516-42ca-a47d-2e1ce45925fb/download/produccin-de-pozos-de-gas-y-petrleo-2008.csv',
+                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/48585038-055a-4437-bb1d-4fe36073f453/download/produccin-de-pozos-de-gas-y-petrleo-2009.csv',
+                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/364ca28e-d069-4bd6-8771-925f0db152a8/download/produccin-de-pozos-de-gas-y-petrleo-2010.csv',
+                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/4817272c-7365-4bdd-b02d-75b118218b10/download/produccin-de-pozos-de-gas-y-petrleo-2011.csv',
+                                               'http://datos.minem.gob.ar/dataset/c846e79c-026c-4040-897f-1ad3543b407c/resource/0dce0e75-1556-47ee-8615-1955fbd54ade/download/produccin-de-pozos-de-gas-y-petrleo-2012.csv'))
                                                
   
   ogDisponibles <- ogDisponibles[year %in% years]
@@ -39,7 +43,7 @@ getOGdata <- function(years=c(2006:2008),
     ogDescargadas <- tolower(regmatches(archivos,regexpr('(?i)year\\d{2}',archivos)))
     ogFaltantes <- ogDisponibles[!nickname %in% ogDescargadas]
     if(nrow(ogFaltantes)==0){
-      cat("Todas los microdatos de la og ya están descargadas en el directorio\r")
+      cat("Todas los microdatos de la og ya estÃ¡n descargadas en el directorio\r")
     } else {
       
       for(i in 1:nrow(ogFaltantes)) {
