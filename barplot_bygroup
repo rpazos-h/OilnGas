@@ -1,4 +1,4 @@
-function (df, by_var, var, stat_fun = mean, order_by_stat = FALSE, 
+barplot_bygroup <- function (df, by_var, var, stat_fun = mean, order_by_stat = FALSE, 
     color = "red") 
 {
     if (!is.data.frame(df)) 
