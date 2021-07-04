@@ -1,4 +1,4 @@
-function (df, ts_id, group_var, var, points = TRUE, error_bars = FALSE) 
+plot_by_group <- function (df, ts_id, group_var, var, points = TRUE, error_bars = FALSE) 
 {
     value <- se <- NULL
     if (!is.data.frame(df)) 
