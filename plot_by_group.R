@@ -12,7 +12,6 @@ plot_by_group <- function (df, ts_id, group_var, var, points = TRUE, error_bars 
         stop("var names need to be in df")
     df <- droplevels(df[stats::complete.cases(df[, c(ts_id, group_var, 
         var)]), c(ts_id, group_var, var)])
-    df[, ts_id] <- try_convert_ts_id(df[, ts_id])
     df[, group_var] <- as.factor(df[, group_var])
     gf <- df %>% dplyr::group_by(!!rlang::sym(ts_id), !!rlang::sym(group_var)) %>% 
         dplyr::summarise(mean = mean(!!rlang::sym(var), na.rm = TRUE), 
